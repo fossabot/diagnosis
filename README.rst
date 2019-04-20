@@ -25,6 +25,23 @@ database tables and perform the initial migration ::
     flask run       # start the flask server
 
 
+This will output the following:
+
+     * Serving Flask app "autoapp.py" (lazy loading)
+     * Environment: development
+     * Debug mode: on
+     * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+     * Restarting with stat
+     * Debugger is active!
+     * Debugger PIN: 474-453-555
+
+Routes
+--------
+
+- Diagnosis Code collection endpoint `http://127.0.0.1:5000/diagnosis`
+- Diagnosis Code endpoint `http://127.0.0.1:5000/diagnosis/:id`
+
+
 Docker
 ----------
 
