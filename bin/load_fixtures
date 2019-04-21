@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import csv
+from pathlib import Path
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+FIXTURES_DIR = os.path.join(os.path.dirname(BASE_DIR), 'fixtures')
+
+# adjust relative import path
+sys.path.append(BASE_DIR)
+
+from mpharma.diagnosis.models import Category, Code
+from mpharma.extensions import db
+from autoapp import app
+
+
+def load_csv(filename):
+    fpath = os.path.join(FIXTURES_DIR, filename)
+    with open(fpath) as f:
+        return list(csv.reader(f))
+
+
+def create_codes():
+    csv_codes = load_csv('codes.csv')
+    print("Adding DX codes")
+    with app.app_context():
+        categories = dict([(x.code, x) for x in Category.query.all()])
+        for x in csv_codes:
+            code = Code(
+                category_id=categories[x[0]].id,
+                diagnosis_code=x[1],
+                full_code=x[2],
+                abbreviated_description=x[3],
+                full_description=x[4]).save()
+            print("{}".format(code))
+            db.session.add(code)
+
+        db.session.commit()
+        print("Finished creating codes")
+
+
+def create_categories():
+    categories = dict(load_csv('categories.csv'))
+    print("Adding categories")
+    with app.app_context():
+        for code, title in categories.items():
+            category = Category(code=code, title=title).save()
+            print("{}".format(category))
+            db.session.add(category)
+
+        db.session.commit()
+        print("Finished creating categories")
+
+
+def setup_fixtures():
+    create_categories()
+    create_codes()
+
+
+if __name__ == '__main__':
+    setup_fixtures()
