@@ -8,10 +8,13 @@ mPharma diagnosis API
 Quickstart
 ----------
 
+The [fixtures](./fixtures) are a subset of the in https://github.com/kamillamagna/ICD-10-CSV.
+
 Run the following commands to bootstrap your environment ::
 
     git clone https://github.com/rpip/mpharma
     cd mpharma
+    pipenv shell --three #use Python 3 if you have that installed locally, or omit the `three` to use Python 2
     pipenv install --dev
     cp .env.example .env
 
@@ -21,7 +24,7 @@ database tables and perform the initial migration ::
     flask db init
     flask db migrate
     flask db upgrade
-    ./bin/load_fixtures # seed the DB with sample DX codes
+    ./bin/load_fixtures # seed the DB with sample DX codes.
     flask run       # start the flask server
 
 
@@ -40,6 +43,7 @@ Routes
 
 - Diagnosis Code collection endpoint `http://127.0.0.1:5000/diagnosis`
 - Diagnosis Code endpoint `http://127.0.0.1:5000/diagnosis/:id`
+
 
 
 Docker
