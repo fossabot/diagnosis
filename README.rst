@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frpip%2Fdiagnosis.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Frpip%2Fdiagnosis?ref=badge_shield)
+
 ===============================
 mpharma
 ===============================
@@ -84,3 +86,7 @@ This will generate a new migration script. Then run ::
 To apply the migration.
 
 For a full migration command reference, run ``flask db --help``.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frpip%2Fdiagnosis.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Frpip%2Fdiagnosis?ref=badge_large)
